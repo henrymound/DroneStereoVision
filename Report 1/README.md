@@ -100,3 +100,17 @@ class Tello:
 
         self.receive_video_thread.start()
 ```
+
+---
+
+The first attempt to solve this was unsuccessful and involved modifying the definition line:
+```
+def __init__(self, local_ip, local_port, imperial=False, command_timeout=.3, tello_ip='192.168.0.101', tello_port=8889):
+```
+to pass in the ip address of the Tello that was used to send commands.
+
+The second attempt involved modifying the connection code in the main file to below:
+```
+drone = tello.Tello('192.168.0.101', 8889)  
+```
+This, too, did not work. 
