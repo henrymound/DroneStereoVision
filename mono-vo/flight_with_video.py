@@ -14,9 +14,9 @@ def plannedRoute():
 
 	tello.send("takeoff", 3)
 
-	for ii in range(36):
-		tello.send("forward 30",3)
-		tello.send("cw 10",3)
+	#for ii in range(36):
+	tello.send("forward 1000",3)
+		#tello.send("cw 10",3)
 
 	tello.send("land", 3)
 
@@ -44,7 +44,7 @@ while not mission_complete:
     cv2.imshow('frame',tello.frame)
 
     # Save the image to a subdirectory
-    cv2.imwrite('flight4/tello'+str(count)+'.png',tello.frame)
+    cv2.imwrite('flight5/tello'+str(count)+'.png',tello.frame)
 
     # inserts a small millisecond delay to render
     # the video frame

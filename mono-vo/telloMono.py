@@ -4,14 +4,17 @@ import cv2
 from visual_odometry import PinholeCamera, VisualOdometry
 
 
-cam = PinholeCamera(960.0, 720.0, 911.53, 909.47, 482.79, 345.40)
-vo = VisualOdometry(cam, '01.txt')
+cam = PinholeCamera(1280.0, 720.0, 911.53, 909.47, 482.79, 345.40)
+vo = VisualOdometry(cam)
 
 traj = np.zeros((600,600,3), dtype=np.uint8)
 
-for img_id in range(490):
-	img = cv2.imread('flight3/tello'+str(img_id)+'.png', 0)
-
+for img_id in range(1, 4008):
+	img = cv2.imread('flight6/output-'+str(img_id).zfill(4)+'.png', 0)
+	#print('flight6/output-'+str(img_id).zfill(4)+'.png')
+	# Resize image
+	#img = cv2.resize(img,(960,720))
+	#img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	vo.update(img, img_id)
 
 	cur_t = vo.cur_t
@@ -19,8 +22,8 @@ for img_id in range(490):
 		x, y, z = cur_t[0], cur_t[1], cur_t[2]
 	else:
 		x, y, z = 0., 0., 0.
-	draw_x, draw_y = int(x)+290, int(z)+90
-	true_x, true_y = int(vo.trueX)+290, int(vo.trueZ)+90
+	draw_x, draw_y = int(x)+290, int(z)+450
+	true_x, true_y = int(vo.trueX)+290, int(vo.trueZ)+450
 
 	cv2.circle(traj, (draw_x,draw_y), 1, (img_id*255/4540,255-img_id*255/4540,0), 1)
 	cv2.circle(traj, (true_x,true_y), 1, (0,0,255), 2)
