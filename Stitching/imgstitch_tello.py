@@ -1,26 +1,28 @@
 import sys
 import traceback
+import threading
 import tellopy
+from tello import Tello
 import av
 import cv2.cv2 as cv2  # for avoidance of pylint error
-import numpy
 import numpy as np
 import imutils
-import cv2
+
+NUM_IMAGES = 10
+DELAY = 1
 
 def saveImage(drone, imageName):
 	if drone.hasFrame:
-    	# Save the image to a subdirectory
-    	cv2.imwrite('flight/'+str(imageName)+'.png', drone.frame)
+		cv2.imwrite('flight/'+str(imageName)+'.png', drone.frame) # Save the image to a subdirectory
 
 def plannedRoute():
 	global tello, mission_complete
-	tello.send("takeoff", 3)
+	tello.send("takeoff", DELAY)
 	# Take a series of 10 images, each 100 apart
-	for i in range(0, 10):
-		tello.send("right 50",3)
+	for i in range(0, NUM_IMAGES):
+		tello.send("right 50",DELAY)
 		saveImage(tello, i)
-	tello.send("land", 3)
+	tello.send("land", DELAY)
 
 	# Notify the program that the flight mission is complete
 	mission_complete = True
@@ -44,25 +46,16 @@ def main():
 	cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    main()
+	main()
 	images = []
-
-	img = cv2.imread('newspaper1.jpg')
-	images.append(img)
-	img = cv2.imread('newspaper2.jpg')
-	images.append(img)
-	img = cv2.imread('newspaper3.jpg')
-	images.append(img)
-	img = cv2.imread('newspaper4.jpg')
-	images.append(img)
-
 	stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
-	(status, stitched) = stitcher.stitch(images)
-
-	print("status:",status)
-
-	if status==0:
-	    cv2.imshow('Stitched Image', stitched)
-	    cv2.waitKey(0)
-
+	for x in range(0, NUM_IMAGES):
+		img = cv2.imread('flight/'+str(x)+'.png')
+		images.append(img)
+		(status, stitched) = stitcher.stitch(images)
+		print("status:",status)
+		if status==0: # Live stiching
+		    cv2.imshow('Stitched Image', stitched)
+		    cv2.waitKey(0)
+	#(status, stitched) = stitcher.stitch(images)
 	cv2.destroyAllWindows()
