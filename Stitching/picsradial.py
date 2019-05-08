@@ -8,11 +8,11 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 18
+NUM_IMAGES = 36
 DELAY = 0
 tello = Tello()	
 images = []
-stitcher = cv2.Stitcher_create(cv.Stitcher_PANORAMA)
+stitcher = cv2.Stitcher_create(cv2.Stitcher_PANORAMA)
 
 
 if __name__ == '__main__':
