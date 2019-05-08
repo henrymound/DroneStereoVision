@@ -8,9 +8,9 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 25
+NUM_IMAGES = 15
 DELAY = 0
-DISTANCE_BETWEEN = 100
+DISTANCE_BETWEEN = 200
 tello = Tello()	
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
@@ -19,10 +19,10 @@ stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 if __name__ == '__main__':
 	# Turn on the video
 	tello.startVideo()
-
 	# Start the Tello mission
 	tello.send("takeoff", DELAY)
-	tello.send("up 1000")
+	tello.send("up 500", DELAY)
+	tello.send("up 500", DELAY)
 
 	# Take a series of NUM_IMAGES images, each 50 apart
 	for i in range(0, NUM_IMAGES):
