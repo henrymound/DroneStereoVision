@@ -2,3 +2,7 @@
 *.db
 *.mp4
 *.png
+!Stitching/*
+!Stitching/line_flights/line1/*
+!Stitching/line_flights/line1/results/*
+
