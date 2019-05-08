@@ -19,7 +19,8 @@ if __name__ == '__main__':
 		(status, stitched) = stitcher.stitch(images)
 		print("Added image " + str(i) + " with status: " + str(status))
 		if status == 0: # If image is valid
-			cv2.imshow('Stitched Image', stitched)
+			#cv2.imshow('Stitched Image', stitched)
+			cv2.imwrite("../radial_flights/radial2/results/stitched"+str(i)+".png", stitched)
 			cv2.waitKey(1)
 		
 	cv2.waitKey(0)

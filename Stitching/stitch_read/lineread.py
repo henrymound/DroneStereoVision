@@ -6,7 +6,7 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 5
+NUM_IMAGES = 10
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 
@@ -21,8 +21,8 @@ if __name__ == '__main__':
 		if status == 0: # If image is valid
 			cv2.imwrite('../line_flights/line3/results/stitched'+str(i)+'.png', stitched) # Save image
 			#cv2.imshow('Stitched Image', stitched)
-			#cv2.waitKey(1)
+			cv2.waitKey(1)
 	cv2.imshow('Stitched Image', stitched)
-	cv2.waitKey(0)
+	cv2.waitKey(1)
 	#(status, stitched) = stitcher.stitch(images)
-	cv2.destroyAllWindows()
+	#cv2.destroyAllWindows()
