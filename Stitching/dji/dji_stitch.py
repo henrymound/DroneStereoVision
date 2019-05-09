@@ -6,7 +6,7 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 910-433
+NUM_IMAGES = 100#910-433
 START_NUM = 433
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
