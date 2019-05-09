@@ -6,8 +6,8 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 432-367
-START_NUM = 367
+NUM_IMAGES = 910-433
+START_NUM = 433
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 
@@ -15,7 +15,7 @@ stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 if __name__ == '__main__':
 
 	for i in range(0, NUM_IMAGES):
-		imgPath = "flight1/DJI_0"+str(i + START_NUM)+".JPG"
+		imgPath = "flight2/DJI_0"+str(i + START_NUM)+".JPG"
 		imgToAppend = cv2.imread(imgPath, cv2.IMREAD_COLOR) 
 		images.append(imgToAppend) 
 		print("Appended: " + imgPath)
