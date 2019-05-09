@@ -21,6 +21,7 @@ if __name__ == '__main__':
 		print("Appended: " + imgPath)
 	
 	(status, stitched) = stitcher.stitch(images)
-	cv2.imshow('Stitched Image', stitched)
+	#cv2.imshow('Stitched Image', stitched)
+	cv2.imwrite('result.JPG',stitched)
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
