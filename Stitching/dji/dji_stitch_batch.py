@@ -6,9 +6,9 @@ import cv2.cv2 as cv2  # for avoidance of pylint error
 import numpy as np
 import imutils
 
-NUM_IMAGES = 100#910-433
+NUM_IMAGES = 910-433
 START_NUM = 433
-BATCH_SIZE = 50
+BATCH_SIZE = 20
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 
@@ -27,6 +27,7 @@ if __name__ == '__main__':
 			cv2.imwrite('batch/'+str(c)+'.JPG',stitched)
 			cv2.waitKey(0)
 			images = []
+			c+=1
 	#cv2.imshow('Stitched Image', stitched)
 	
 	#cv2.waitKey(0)
