@@ -8,7 +8,7 @@ import imutils
 
 NUM_IMAGES = 910-433
 START_NUM = 433
-BATCH_SIZE = 10
+BATCH_SIZE = 30
 images = []
 stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
 
@@ -23,9 +23,9 @@ if __name__ == '__main__':
 		images.append(imgToAppend) 
 		print("Appended: " + imgPath)
 		if(len(images) == BATCH_SIZE):
-			print("Batch " + str(c) + " Complete: Saving in batch/"+str(c)+".JPG")
+			print("Batch " + str(c) + " Complete: Saving in batch_downscaled_30/"+str(c)+".JPG")
 			(status, stitched) = stitcher.stitch(images)
-			cv2.imwrite('batch_downscaled/'+str(c)+'.JPG',stitched)
+			cv2.imwrite('batch_downscaled_30/'+str(c)+'.JPG',stitched)
 			cv2.waitKey(0)
 			images = []
 			c+=1
