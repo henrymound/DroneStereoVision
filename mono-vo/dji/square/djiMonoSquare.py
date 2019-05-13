@@ -13,7 +13,7 @@ vo = VisualOdometry(cam)
 
 traj = np.zeros((600,600,3), dtype=np.uint8)
 
-for img_id in range(1, 299):
+for img_id in range(1, 163):
 	img = cv2.imread('frames/'+str(img_id).zfill(4)+'.jpg', 0)
 	#print('flight6/output-'+str(img_id).zfill(4)+'.png')
 	# Resize image
