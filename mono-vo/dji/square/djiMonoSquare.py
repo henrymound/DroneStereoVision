@@ -7,8 +7,8 @@ from visual_odometry import PinholeCamera, VisualOdometry
 # For mavic (fov 78.8): (2720/2)/tan(78.8/2) == (2720/2)/0.82140888325 == ~1655.692
 # Cx and Cy are calculated using: x/2.044 and y/2.044, respectively
 
-#cam = PinholeCamera(2720.0, 1530.0, 1655.692, 1655.692, 1330.72, 748.53)
-cam = PinholeCamera(2720.0, 1530.0, 1269.0, 1269.0, 1360.0, 765.0)
+cam = PinholeCamera(2720.0, 1530.0, 1655.692, 1655.692, 1330.72, 748.53)
+#cam = PinholeCamera(2720.0, 1530.0, 1269.0, 1269.0, 1360.0, 765.0)
 vo = VisualOdometry(cam)
 
 traj = np.zeros((600,600,3), dtype=np.uint8)
