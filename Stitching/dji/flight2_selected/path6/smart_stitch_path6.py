@@ -22,12 +22,12 @@ CHECK_PROGRESS = False # When true, smart stitch will check each time a batch st
 IMAGE_SCALE_FACTOR = 1
 # STITCH_HEIGHT_MIN_RATIO: A scale factor applied to input image height to determine 
 # 	the minimum stitched height for a 'valid' batch result.
-STITCH_HEIGHT_MIN_RATIO = 2
+STITCH_HEIGHT_MIN_RATIO = 2.7
 
 NUM_IMAGES = LAST_INDEX-FIRST_INDEX
 START_NUM = FIRST_INDEX
-BATCH_BOUND = 20 # The maximum images allowed in a batch
-BATCH_MIN = 3 # The minimum number of photos to fill a batch
+BATCH_BOUND = 13 # The maximum images allowed in a batch
+BATCH_MIN = 8 # The minimum number of photos to fill a batch
 
 #images = [None] * BATCH_BOUND # Empty array bound by the maximum batch size
 images = [] # Images is a list of dynamic size
@@ -150,12 +150,12 @@ if __name__ == '__main__':
 	for image in batch_images:
 		if image is not None: # If valid image
 			final_images.append(image)
-			if len(final_images) >= 2: # Attempt in-progress stitch
-				(progstatus, progstitched) = stitcher.stitch(final_images)
-				if progstatus == 0: # If progress array succesfully stitched
-					print("Saving Progress " + str(counter))
-					cv2.imwrite('Progress'+str(counter)+'.JPG',progstitched)
-					counter+=1
+			#if len(final_images) >= 2: # Attempt in-progress stitch
+			#	(progstatus, progstitched) = stitcher.stitch(final_images)
+			#	if progstatus == 0: # If progress array succesfully stitched
+			#		print("Saving Progress " + str(counter))
+			#		cv2.imwrite('Progress'+str(counter)+'.JPG',progstitched)
+			#		counter+=1
 
 	print("STITCHING " + str(len(final_images)) + " VALID SUB-STITCHED IMAGES")
 	
