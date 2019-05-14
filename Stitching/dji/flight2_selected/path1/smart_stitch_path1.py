@@ -93,7 +93,7 @@ if __name__ == '__main__':
 					(stitchedHeight/inputHeight >= STITCH_HEIGHT_MIN_RATIO) or # Ratio requirement met
 					(i >= NUM_IMAGES) or # Last image
 					(Stitch_Shrank and NO_SHRINK) or # Image shrank and not allowed
-					(images_in_batch > BATCH_BOUND) or # Reached max batch size
+					(images_in_batch >= BATCH_BOUND) or # Reached max batch size
 					(MATCH_RATIOS and stitchedHeight > average_batch_height and average_batch_height > 0) # Trying to match ratios
 					): # If the stitch is valid for any reason
 					if (i >= NUM_IMAGES):
@@ -102,7 +102,7 @@ if __name__ == '__main__':
 						print("Shrinking is not allowed.")
 					if (stitchedHeight/inputHeight >= STITCH_HEIGHT_MIN_RATIO):
 						print("Ratio requirement met.")
-					if (images_in_batch > BATCH_BOUND):
+					if (images_in_batch >= BATCH_BOUND):
 						print("Batch limit met.")
 					if (MATCH_RATIOS and stitchedHeight > average_batch_height and average_batch_height > 0):
 						print("Matching ratios. Current height is " + str(stitchedHeight) + " and " +
