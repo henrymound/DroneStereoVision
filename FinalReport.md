@@ -41,7 +41,7 @@ However, small disruptions in the input images quickly caused an inaccurate resu
 	![Mavic Failed Nested Batch](images/mavic_batches/failednestedbatch.JPG)
 	At this stage in the process, I believe nested batching proved problematic because, even to a person, the input images did not have a clear way of fitting together. In other words, two sequential images did not fit together in a line. For example, here are two sequentially processed sub-batch stitch results:
 	![Mavic Failed Nested Batch](images/mavic_batches/problematic_sub_stitching.jpg)
-	Though the continuity issue demonstrated by the above image could likely have been remedied by further cherry-picking input images, the original goal of this endevour was to created a final stitched image with little human oversight. So, I modified my approach slightly. 	
+	Though the continuity issue demonstrated by the above image could likely have been remedied by further cherry-picking input images, the original goal of this endevour was to created a final stitched image with little human oversight. So, I modified my approach slightly. The original flight path consisted of 10 attempted straight-line	 aerial paths. I grouped these 10 vertical strafes together and removed the few images taken between the distinct paths. Each of these paths consisted of approximatly 50 images. Because of prior problems to large image batches, I further subdivided each of the 10 paths into a part1 and part2.  
 	
 	
 # Citations 
