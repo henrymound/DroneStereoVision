@@ -22,7 +22,7 @@ CHECK_PROGRESS = False # When true, smart stitch will check each time a batch st
 IMAGE_SCALE_FACTOR = 1
 # STITCH_HEIGHT_MIN_RATIO: A scale factor applied to input image height to determine 
 # 	the minimum stitched height for a 'valid' batch result.
-STITCH_HEIGHT_MIN_RATIO = 1.5
+STITCH_HEIGHT_MIN_RATIO = 2
 
 NUM_IMAGES = LAST_INDEX-FIRST_INDEX
 START_NUM = FIRST_INDEX
