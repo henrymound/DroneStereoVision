@@ -1,4 +1,4 @@
-# Terrain Mapping Applications Using Drone Image Data
+# Terrain Mapping Using Drone Image Data
 
 ## Introduction
 
@@ -89,7 +89,7 @@ There were also instances with just minor stitch flaws:
 
 As well as instances where the result was quite successful:
 
-![Mavic Failed 30 Batch](images/mavic_batches/successful30batch.JPG)
+![Mavic Success 30 Batch](images/mavic_batches/successful30batch.JPG)
 
 I tried using only every other image in the flight data set as input to reduce the input size. This approach worked for most of the stitches, but failed in specific cases. After trying many different combinations of batch size and image scaling (and chewing up a lot of storage space), I found what seemed to be the sweet spot: downscaling the input images to 30% of their original size and stitching together batches of 10 images. Upon trying to stitch the resulting batch images, however, I ran into issued like the one below:
 
