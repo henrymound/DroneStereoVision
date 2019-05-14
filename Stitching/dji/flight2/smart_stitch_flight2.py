@@ -9,7 +9,7 @@ import math
 
 
 LAST_INDEX = 910
-FIRST_INDEX = 433
+FIRST_INDEX = 436
 
 IMAGE_PATH_PREFIX = "DJI_0"
 IMAGE_PATH_SUFFIX = ".JPG"
@@ -19,7 +19,7 @@ MATCH_RATIOS = False # When true, program aims to create substitches of similar 
 CHECK_PROGRESS = False # When true, smart stitch will check each time a batch stitch
 #	is assigned to make sure it works with the finished batches
 
-IMAGE_SCALE_FACTOR = .2
+IMAGE_SCALE_FACTOR = .8
 # STITCH_HEIGHT_MIN_RATIO: A scale factor applied to input image height to determine 
 # 	the minimum stitched height for a 'valid' batch result.
 STITCH_HEIGHT_MIN_RATIO = 2
