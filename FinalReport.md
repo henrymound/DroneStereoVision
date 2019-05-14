@@ -31,6 +31,18 @@ However, small disruptions in the input images quickly caused an inaccurate resu
 	![Mavic Scans Result](images/mavic_scan/RESULT.JPG) 
 	The above results were highly encouraging. The stitching quality and accuracy was very high for the initial run. With the prospect of visual odometry path calculations in combination with scans stitching in mind, I set out to try and test the feasability of stitching together a high-resolution campus-wide aerial image. To start, I chose an area of campus to take aerial pictures of using the Mavic. I took a total of 478 (4000 x 3000) images of a square region of campus bound by four landmarks: the edge of Ross Lang, College Street, Hmkl Way, and Chateau Rd. The captured images totaled of 2.74 Gigabytes and covered the entirety of the region outlined below in red:
 	![Mavic Area Surveyed](images/mavic_mapping/)
+	Though I was skeptical of my computer's ability to simply take in all of the captured images to create a large stitched result, my first approach was to read in all 478 images and try and stitch them together. After many hours of 100% CPU usage, 100% of my computer's total 8Gb of RAM, and over 30Gb of swap space usage from an underlying array error. I concluded that the input images were too large and overwhelming to the algorithm. To counteract this, I decided to stitch images together in batches with the intention of then stitching together the results of the batched stitches. I experimented with different input batch sizes. I started by simply stitching all input images in sets of 2. This yielded only minor changes as the distance between the input images was small. A batch size of 30 images was very processor intensive and sometimes failed. So, I scaled down the images within the stitching program using OpenCV to lighten the processing load. Even with downscaling, several of the batch results using 30 input images failed like in the case below: 
+	![Mavic Failed 30 Batch](images/mavic_batches/failed30downscaled.JPG)
+	There were also instances with just minor stitch flaws:
+	![Mavic Failed 30 Batch](images/mavic_batches/minorfail30batch.JPG)
+	As well as instances where the result was quite successful:
+	![Mavic Failed 30 Batch](images/mavic_batches/successful30batch.JPG)
+	I tried using every other image in the flight set as input to reduce the input size. This approach worked for most of the stitches, but failed in specific cases. After trying many different combinations of batch size and image scaling (and chewing up a lot of storage space), I found what seemed to be the sweet spot: downscaling the input images to 30% of their original size and stitching together batches of 10 images. Upon trying to stitch the resulting batch images, however, I ran into issued like the one below:
+	![Mavic Failed Nested Batch](images/mavic_batches/failednestedbatch.JPG)
+	At this stage in the process, I believe nested batching proved problematic because, even to a person, the input images did not have a clear way of fitting together. In other words, two sequential images did not fit together in a line. For example, here are two sequentially processed sub-batch stitch results:
+	![Mavic Failed Nested Batch](images/mavic_batches/problematic_sub_stitching.jpg)
+	Though the continuity issue demonstrated by the above image could likely have been remedied by further cherry-picking input images, the original goal of this endevour was to created a final stitched image with little human oversight. So, I modified my approach slightly. 	
+	
 	
 # Citations 
 - https://demuc.de/papers/schoenberger2016sfm.pdf
