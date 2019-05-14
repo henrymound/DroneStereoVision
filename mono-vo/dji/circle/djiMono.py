@@ -8,13 +8,15 @@ from visual_odometry import PinholeCamera, VisualOdometry
 
 
 #cam = PinholeCamera(2720.0, 1530.0, 1655.692, 1655.692, 1330.72, 748.53)
-cam = PinholeCamera(2720.0, 1530.0, 1269.0, 1269.0, 1360.0, 765.0)
+#cam = PinholeCamera(2720.0, 1530.0, 1269.0, 1269.0, 1360.0, 765.0) # Best result
+cam = PinholeCamera(1360.0, 765.0, 634.5, 634.5, 680.0, 382.5) # Best result scaled
 vo = VisualOdometry(cam)
 
 traj = np.zeros((600,600,3), dtype=np.uint8)
 
-for img_id in range(1, 299):
-	img = cv2.imread('frames/'+str(img_id).zfill(4)+'.jpg', 0)
+for img_id in range(1, 299, 2):
+	imgFull = cv2.imread('frames/'+str(img_id).zfill(4)+'.jpg', 0)
+	img = cv2.resize(imgFull,None,fx=0.5,fy=0.5) # Scale image down by 50%
 	#print('flight6/output-'+str(img_id).zfill(4)+'.png')
 	# Resize image
 	#img = cv2.resize(img,(960,720))

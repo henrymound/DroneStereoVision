@@ -2,6 +2,7 @@
 *.db
 *.mp4
 *.png
+COLMAP/Regard3D/*
 !Stitching/*
 !Stitching/line_flights/line1/*
 !Stitching/line_flights/line1/results/*
