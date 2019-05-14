@@ -125,4 +125,3 @@ These results were encouraging and had far fewer complications that the scan sti
 
 ![Mavic Pano Video](images/djipanovideo.JPG)
 	
-## Conclusions	
