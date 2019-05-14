@@ -22,12 +22,12 @@ CHECK_PROGRESS = False # When true, smart stitch will check each time a batch st
 IMAGE_SCALE_FACTOR = 1
 # STITCH_HEIGHT_MIN_RATIO: A scale factor applied to input image height to determine 
 # 	the minimum stitched height for a 'valid' batch result.
-STITCH_HEIGHT_MIN_RATIO = 2.7
+STITCH_HEIGHT_MIN_RATIO = 1.6
 
 NUM_IMAGES = LAST_INDEX-FIRST_INDEX
 START_NUM = FIRST_INDEX
-BATCH_BOUND = 13 # The maximum images allowed in a batch
-BATCH_MIN = 8 # The minimum number of photos to fill a batch
+BATCH_BOUND = 20 # The maximum images allowed in a batch
+BATCH_MIN = 3 # The minimum number of photos to fill a batch
 
 #images = [None] * BATCH_BOUND # Empty array bound by the maximum batch size
 images = [] # Images is a list of dynamic size

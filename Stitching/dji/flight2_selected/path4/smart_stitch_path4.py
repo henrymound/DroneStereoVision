@@ -16,13 +16,13 @@ IMAGE_PATH_SUFFIX = ".JPG"
 
 NO_SHRINK = True # When true, doesn't allow batches to shrink in size as more images are added
 MATCH_RATIOS = False # When true, program aims to create substitches of similar size
-CHECK_PROGRESS = False # When true, smart stitch will check each time a batch stitch
+CHECK_PROGRESS = True # When true, smart stitch will check each time a batch stitch
 #	is assigned to make sure it works with the finished batches
 
 IMAGE_SCALE_FACTOR = 1
 # STITCH_HEIGHT_MIN_RATIO: A scale factor applied to input image height to determine 
 # 	the minimum stitched height for a 'valid' batch result.
-STITCH_HEIGHT_MIN_RATIO = 2
+STITCH_HEIGHT_MIN_RATIO = 1.6
 
 NUM_IMAGES = LAST_INDEX-FIRST_INDEX
 START_NUM = FIRST_INDEX
@@ -89,18 +89,20 @@ if __name__ == '__main__':
 						if batch_counter >= 1 and CHECK_PROGRESS: # If not first batch and set to check
 							print("Checking result will work with overall stitch")
 							toStitch = []
-							toStitch.append(stitch_in_progress)
-							toStitch.append(img)
+							for image in batch_images:
+								if image is not None: # If valid image
+									toStitch.append(image)
+							toStitch.append(batch_images[batch_counter])
 							(status1, stitched1) = stitcher.stitch(toStitch)
 							if status1 == 0: # If success
 								print("Success!")
 								cv2.imwrite('progress.JPG',stitched1)
+								print("Updating Batch Array Index " + str(batch_counter))
+								batch_images[batch_counter] = stitched
+								# Write the resulting image with corresponding batch number
+								cv2.imwrite('BATCH'+str(batch_counter)+'.JPG',stitched)
 							else:
-								print("Fail!")
-						print("Updating Batch Array Index " + str(batch_counter))
-						batch_images[batch_counter] = stitched
-						# Write the resulting image with corresponding batch number
-						cv2.imwrite('BATCH'+str(batch_counter)+'.JPG',stitched)
+								print("Fail! Ditching this stitch")
 					elif images_in_batch > BATCH_MIN: # Record that current stitch is smaller than previous
 						#print("Stitched image shrank with the newest addition!")
 						Stitch_Shrank = True
